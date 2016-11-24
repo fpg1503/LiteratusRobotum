@@ -29,7 +29,7 @@ def find_secrets(lib, minimum_length, maximum_length):
 	with open(lib,"rb") as lib_ref:
 		data = lib_ref.read()
 		strings = find_strings(data, minimum_length, maximum_length)
-		secrets = list(filter(lambda x: x[0].isalpha(), strings))
+		secrets = list(filter(lambda x: x[0].isalnum(), strings))
 		dump_data["strings"] = secrets
 	return dump_data
 	
