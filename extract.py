@@ -3,6 +3,7 @@ import sys
 import shutil
 import json
 import string
+from argparse import ArgumentParser
 
 def find_strings(data, minimum_length, maximum_length):
 	printable = list(map(ord, set(string.printable)))
@@ -42,14 +43,21 @@ def delete_dir(dir):
 	shutil.rmtree(dir)
 
 
-if len(sys.argv) <= 3:
-	print("Usage: python3 " + sys.argv[0] + " <filename.apk> <libname.so> <minimum length> <maximum length>")
-	exit()
+parser = ArgumentParser()
+parser.add_argument("-f", "--file", dest="file",
+			help="your APK file", metavar="FILE")
+parser.add_argument("-l", "--lib-name", dest="lib_name",
+			help="the name of the library")
+parser.add_argument("-s", "--size", dest="length",
+			type=int, nargs='+',
+			help="minimum length of the strings to be found")
+			
+args = parser.parse_args()
+file = args.file
+lib_name = args.lib_name
+minimum_length = args.length[0]
+maximum_length = args.length[1] if len(args.length) > 1 else args.length[0]
 
-file = sys.argv[1]
-lib_name = sys.argv[2]
-minimum_length = int(sys.argv[3])
-maximum_length = int((sys.argv[4:] or sys.argv[3])[0])
 target = "unzip"
 lib_location = "/lib/armeabi-v7a/" + lib_name
 dump = "dump.json"
