@@ -49,6 +49,9 @@ parser.add_argument("-f", "--file", dest="file",
 			help="your APK file", metavar="FILE")
 parser.add_argument("-l", "--lib-name", dest="lib_name",
 			help="the name of the library")
+parser.add_argument("-o", "--output", dest="output",
+			default="dump.json",
+			help="file to output results\ndefaults to dump.json")
 parser.add_argument("-s", "--size", dest="length",
 			type=int, nargs='+',
 			help="length of the strings to be found\nusage: [-s LENGTH] or [-s MININUM_LENGTH MAXIMUM_LENGTH]")
@@ -61,7 +64,7 @@ maximum_length = args.length[1] if len(args.length) > 1 else args.length[0]
 
 target = "unzip"
 lib_location = "/lib/armeabi-v7a/" + lib_name
-dump = "dump.json"
+dump = args.output
 
 full_lib_path = target + lib_location
 
