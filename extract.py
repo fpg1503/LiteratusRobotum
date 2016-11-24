@@ -4,6 +4,7 @@ import shutil
 import json
 import string
 from argparse import ArgumentParser
+from argparse import RawTextHelpFormatter
 
 def find_strings(data, minimum_length, maximum_length):
 	printable = list(map(ord, set(string.printable)))
@@ -43,14 +44,14 @@ def delete_dir(dir):
 	shutil.rmtree(dir)
 
 
-parser = ArgumentParser()
+parser = ArgumentParser(formatter_class=RawTextHelpFormatter)
 parser.add_argument("-f", "--file", dest="file",
 			help="your APK file", metavar="FILE")
 parser.add_argument("-l", "--lib-name", dest="lib_name",
 			help="the name of the library")
 parser.add_argument("-s", "--size", dest="length",
 			type=int, nargs='+',
-			help="minimum length of the strings to be found")
+			help="length of the strings to be found\nusage: [-s LENGTH] or [-s MININUM_LENGTH MAXIMUM_LENGTH]")
 			
 args = parser.parse_args()
 file = args.file
