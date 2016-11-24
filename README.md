@@ -3,11 +3,15 @@
 
 # Usage
 
-    python3 extract.py <filename.apk> <libname.so> <desired length>
+    python3 extract.py -f <filename.apk> -l <libname.so> -s <desired length>
     
 or
 
-    python3 extract.py <filename.apk> <libname.so> <minimum length> <maximum length>
+    python3 extract.py -f <filename.apk> -l <libname.so> -s <minimum length> <maximum length>
+
+To see all the options use
+
+    python3 extract.py --help
 
 For example: to extract all strings of length 20 simply run:
 
