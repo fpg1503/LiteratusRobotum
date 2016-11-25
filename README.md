@@ -15,4 +15,4 @@ To see all the options use
 
 For example: to extract all strings of length 20 simply run:
 
-    python3 extract.py myapp.apk mylib.so 20
+    python3 extract.py -f myapp.apk -l mylib.so -s 20
